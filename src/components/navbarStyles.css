@@ -1,0 +1,31 @@
+.navbar-cntnr{
+	//border:1px solid black;
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+	background-color: #aaaaaa;
+}
+.navbar-cntnr a{
+	text-decoration: none;
+	//border: 1px solid black;
+	cursor: pointer;
+}
+.navbar-cntnr h2{
+	//border: 1px solid black;
+	font-size: 3.5vw;
+	margin: 0;	
+}
+.navbar-cntnr ul{
+	//border: 1px solid black;
+	margin:0;
+	padding:0;
+	display: flex;
+	gap:10px;
+	list-style-type: none;
+	align-items: center;	
+}
+.navbar-cntnr ul li{
+	font-size:2.5vw;
+	//border: 1px solid black;
+	//display: inline-flex;	
+}
