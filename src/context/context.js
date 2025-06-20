@@ -15,7 +15,7 @@ export default function GlobalState({children}){
 			cpyCartItems.push(currentItem);
 		}
 		else{
-			cpyCartItems.splice(index);
+			cpyCartItems.splice(index,1);
 		}
 		setCartItems(cpyCartItems);
 		console.log(cartItems);
