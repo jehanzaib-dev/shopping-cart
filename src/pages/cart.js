@@ -1,38 +1,51 @@
-import {useState} from 'react';
-import {useContext} from 'react';
-import {useEffect} from 'react';
+import "./cartStyles.css";
+import React, {useContext} from 'react';
+import { Link } from "react-router-dom";
 import {GlobalContext} from '../context/context.js';
-import Product from '../components/product.js';
-
-export default function Cart(){
-
-	const [totalPrice, setTotalPrice]=useState(0);
-
-	const {cartItems}=useContext(GlobalContext);
-
-	function calctotal(){
-		let sum=0;
-		cartItems.forEach(item=>sum+=item.price);
-		console.log(sum);
-		setTotalPrice(sum);
-	}
 
 
 
-	useEffect(()=>{
-		calctotal();
+const Cart = () => {
+  const { cartItems, removeFromCart, clearCart } = useContext(GlobalContext);
 
-	},[cartItems]);
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
 
-	return(
-		<div className='products-cntnr'>
-		{
-			cartItems && cartItems.length ?
-			cartItems.map((item)=><Product key={item.id} product={item}/>):null
-		}
-			<div>
-			{totalPrice}
-			</div>
-		</div>
-		);
-}
+  return (
+    <div className="cartProducts-cntnr">
+      <h2>Your Shopping Cart</h2>
+      {cartItems.length === 0 ? (
+  <div className="empty-cart">
+    <p>Your cart is empty 🛒</p>
+    <Link to="/" className="back-btn">Go Shopping</Link>
+  </div>
+)  : (
+        <>
+          <div className="cart-items">
+            {cartItems.map((item) => (
+              <div className="cart-item" key={item.id}>
+                <img src={item.image} alt={item.name} />
+                <div className="cart-details">
+                  <h4>{item.name}</h4>
+                  <p>Quantity: {item.quantity}</p>
+                  <p>Price: ${(item.price * item.quantity).toFixed(2)}</p>
+                  <button onClick={() => removeFromCart(item.id)}>
+                    Remove
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="cart-summary">
+            <h3>Total: ${totalPrice.toFixed(2)}</h3>
+            <button onClick={clearCart}>Clear Cart</button>
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default Cart;

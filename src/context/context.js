@@ -1,30 +1,42 @@
-import {createContext} from 'react';
-import {useState} from 'react';
-
-export const GlobalContext=createContext(null);
-
-export default function GlobalState({children}){
-	const [cartItems, setCartItems]=useState([]);
+import React, {createContext, useState} from 'react';
 
 
-	function handleAddtoCart(currentItem){
-		//console.log(currentItem);
-		let cpyCartItems=[...cartItems];
-		const index=cpyCartItems.findIndex(item=>item.id===currentItem.id);
-		if(index===-1){
-			cpyCartItems.push(currentItem);
-		}
-		else{
-			cpyCartItems.splice(index,1);
-		}
-		setCartItems(cpyCartItems);
-		console.log(cartItems);
-	}
+export const GlobalContext=createContext();
 
 
-	return(
-	<GlobalContext.Provider value={{cartItems, setCartItems, handleAddtoCart}}>
-	{children}
-	</GlobalContext.Provider>
-	);
-}
+export const GlobalState = ({ children }) => {
+  const [cartItems, setCartItems] = useState([]);
+
+  const addToCart = (product) => {
+    setCartItems((prevItems) => {
+      const existingItem = prevItems.find((item) => item.id === product.id);
+      if (existingItem) {
+        return prevItems.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        return [...prevItems, { ...product, quantity: 1 }];
+      }
+    });
+  };
+
+  const removeFromCart = (productId) => {
+    setCartItems((prevItems) =>
+      prevItems.filter((item) => item.id !== productId)
+    );
+  };
+
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
+  return (
+    <GlobalContext.Provider
+      value={{ cartItems, addToCart, removeFromCart, clearCart }}
+    >
+      {children}
+    </GlobalContext.Provider>
+  );
+};

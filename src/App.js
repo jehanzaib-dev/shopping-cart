@@ -1,23 +1,22 @@
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Products from "./pages/Products.jsx";
+import Cart from "./pages/cart";
+import Navbar from "./components/navbar";
+import Footer from "./components/footer.jsx";
 import './App.css';
-import {Routes, Route} from 'react-router-dom';
-import Navbar from './components/navbar.js';
-import Home from './pages/home.js';
-import Cart from './pages/cart.js';
 
-
-function App() {
+const App = () => {
   return (
-<div className="App">
-  <Navbar/>
-  <Routes>
-    <Route path='/' element=<Home/> />
-
-    <Route path='/cart' element=<Cart/> />
-  </Routes>          
-
-
-</div>
-);
-}
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Products />} />
+        <Route path="/cart" element={<Cart />} />
+      </Routes>
+      <Footer/>
+    </>
+  );
+};
 
 export default App;
