@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {GlobalContext} from '../context/context.js';
 import ProductCard from '../components/ProductCard.jsx';
+import Loader from '../components/Loader.jsx';
 import './ProductsStyles.css';
 
 
@@ -16,7 +17,6 @@ const Products=()=>{
 		try{
 		const response=await fetch('https://fakestoreapi.com/products');
 		const result= await response.json();
-		console.log(result);
 		if(result){
 			setProductList(result);
 			setLoading(false);
@@ -35,9 +35,7 @@ const Products=()=>{
 	return(
 		<div className='products-cntnr'>
 		<h2>Products</h2>
-		 {loading ? (
-        <div className="loader">Loading products...</div>
-      ) : (
+		 {loading ? <Loader/> : (
         <div className="product-grid">
           {productList.map((product) => (
             <ProductCard
