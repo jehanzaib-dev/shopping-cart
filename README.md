@@ -6,7 +6,7 @@ It features dynamic product loading, interactive cart management, theme toggling
 ---
 
 ## 🚀 Live Demo
-👉 [View Live](https://mynovacart.netlify.app/) ← *(replace with your link)*
+👉 [View Live](https://mynovacart.netlify.app/)
 
 ---
 
