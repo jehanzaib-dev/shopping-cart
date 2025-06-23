@@ -1,11 +1,14 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useState, useEffect} from 'react';
 
 
 export const GlobalContext=createContext();
 
 
 export const GlobalState = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(() => {
+  const storedCart = localStorage.getItem("cart");
+  return storedCart ? JSON.parse(storedCart) : [];
+});
 
   const addToCart = (product) => {
     setCartItems((prevItems) => {
@@ -31,6 +34,10 @@ export const GlobalState = ({ children }) => {
   const clearCart = () => {
     setCartItems([]);
   };
+
+  useEffect(() => {
+  localStorage.setItem("cart", JSON.stringify(cartItems));
+}, [cartItems]);
 
   return (
     <GlobalContext.Provider
