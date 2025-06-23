@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState,useCallback, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import Loader from "../components/Loader";
 import { GlobalContext } from "../context/context";
@@ -12,30 +12,24 @@ const ProductDetails = () => {
   const [error, setError] = useState(null);
 
   
-  const fetchProduct = async () => {
+  const fetchProduct = useCallback(async () => {
   try {
     setLoading(true);
     setError(null);
-
     const res = await fetch(`https://fakestoreapi.com/products/${id}`);
-
-    if (!res.ok) {
-      throw new Error("Server error");
-    }
-
+    if (!res.ok) throw new Error("Failed to fetch product");
     const data = await res.json();
     setProduct(data);
   } catch (err) {
-    console.error("Error loading product:", err.message);
-    setError("Could not load product details. Please check your internet connection and try again.");
+    setError("Failed to load product.");
   } finally {
     setLoading(false);
   }
-};
+}, [id]);
 
 useEffect(() => {
   fetchProduct();
-}, [id]);
+}, [fetchProduct]);
 
   
 
