@@ -9,9 +9,14 @@ const ProductCard = ({ product, addToCart }) => {
     <div className="product-card">
       <Link to={`/product/${product.id}`} className="product-link">
       <img className="product-img" src={product.image} alt={product.name} />
-      <h3 className="product-name">{product.name}</h3>
     </Link>
-     <p className="product-tagline">{product.title}</p> 
+    <div className="product-info">
+  <Link to={`/product/${product.id}`} className="product-link">
+    <h3 className="product-name">{product.title}</h3>
+  </Link>
+  <p className="product-price">${product.price.toFixed(2)}</p>
+    </div>
+ 
     <Link to={`/product/${product.id}`} className="view-details-btn">
         View Details
       </Link>
