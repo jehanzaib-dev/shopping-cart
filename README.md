@@ -73,10 +73,16 @@ Just connect your GitHub repo
 Set the build command: npm run build
 
 Output directory: dist (if using Vite) or build (if using CRA)
+	---
 
 
 
 👨‍💻 Author
 Made with ❤️ by Jehanzaib
-📫 [linkedin] 
-(https://www.linkedin.com/in/jehanzaib-arshad-a722b6369/)
+[![Gmail](https://img.shields.io/badge/Gmail-red?style=for-the-badge&logo=gmail&logoColor=white)](mailto:your.email@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/your-username)
+
+
+
+
+
