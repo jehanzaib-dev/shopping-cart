@@ -9,21 +9,46 @@ const ProductDetails = () => {
   const { addToCart } = useContext(GlobalContext);
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setProduct(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching product:", err);
-        setLoading(false);
-      });
-  }, [id]);
+  
+  const fetchProduct = async () => {
+  try {
+    setLoading(true);
+    setError(null);
+
+    const res = await fetch(`https://fakestoreapi.com/products/${id}`);
+
+    if (!res.ok) {
+      throw new Error("Server error");
+    }
+
+    const data = await res.json();
+    setProduct(data);
+  } catch (err) {
+    console.error("Error loading product:", err.message);
+    setError("Could not load product details. Please check your internet connection and try again.");
+  } finally {
+    setLoading(false);
+  }
+};
+
+useEffect(() => {
+  fetchProduct();
+}, [id]);
+
+  
 
   if (loading) return <Loader/>;
+  if (error){ 
+    return ( 
+    <div className="error-message">
+      <p>{error}</p>
+      <button onClick={fetchProduct} className="retry-btn">Retry
+      </button>
+    </div>
+    );
+  }
 
   if (!product) return <p style={{ textAlign: "center" }}>Product not found</p>;
 
