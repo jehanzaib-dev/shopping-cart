@@ -59,7 +59,6 @@ It features dynamic product loading, interactive cart management, theme toggling
 
 ## 🛠️ Installation
 
-```bash
 git clone https://github.com/your-username/shopping-cart
 cd shopping-cart
 npm install
