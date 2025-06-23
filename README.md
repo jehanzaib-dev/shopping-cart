@@ -78,4 +78,5 @@ Output directory: dist (if using Vite) or build (if using CRA)
 
 👨‍💻 Author
 Made with ❤️ by Jehanzaib
-📫 [www.linkedin.com/in/jehanzaib-arshad-a722b6369]
+📫 [linkedin] 
+(https://www.linkedin.com/in/jehanzaib-arshad-a722b6369/)
