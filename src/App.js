@@ -6,6 +6,9 @@ import Navbar from "./components/navbar";
 import ProductDetails from "./pages/ProductDetails";
 import Footer from "./components/footer.jsx";
 import './App.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const App = () => {
   return (
@@ -17,6 +20,7 @@ const App = () => {
         <Route path="/product/:id" element={<ProductDetails />} />
       </Routes>
       <Footer/>
+       <ToastContainer position="top-right" autoClose={3000} />
     </>
   );
 };

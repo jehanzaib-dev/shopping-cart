@@ -1,4 +1,6 @@
 import React, {createContext, useState, useEffect} from 'react';
+import { toast } from "react-toastify";
+
 
 
 export const GlobalContext=createContext();
@@ -14,12 +16,14 @@ export const GlobalState = ({ children }) => {
     setCartItems((prevItems) => {
       const existingItem = prevItems.find((item) => item.id === product.id);
       if (existingItem) {
+      toast.info("Increased quantity.");  
         return prevItems.map((item) =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       } else {
+        toast.success("Added to cart!");
         return [...prevItems, { ...product, quantity: 1 }];
       }
     });
@@ -27,12 +31,17 @@ export const GlobalState = ({ children }) => {
 
   const removeFromCart = (productId) => {
     setCartItems((prevItems) =>
-      prevItems.filter((item) => item.id !== productId)
-    );
+    {
+      toast.warn("Item removed.");
+    return prevItems.filter((item) => item.id !== productId);
+
+    });
   };
 
   const clearCart = () => {
-    setCartItems([]);
+    toast.error("Cart cleared.");
+  setCartItems([]);
+  localStorage.removeItem("cart");
   };
 
   useEffect(() => {
