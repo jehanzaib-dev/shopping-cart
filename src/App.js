@@ -8,6 +8,7 @@ import Footer from "./components/footer.jsx";
 import './App.css';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import NotFound from './pages/NotFound';
 
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/" element={<Products />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer/>
        <ToastContainer position="top-right" autoClose={3000} />
