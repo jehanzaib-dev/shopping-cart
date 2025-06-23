@@ -5,14 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
 import {GlobalState} from './context/context.js';
+import { ThemeProvider } from "./context/ThemeContext";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<BrowserRouter>
+		<ThemeProvider>
 		<GlobalState>
     	<App />
     	</GlobalState>
+    </ThemeProvider>
     </BrowserRouter>
 );
 

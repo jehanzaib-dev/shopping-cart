@@ -2,8 +2,9 @@ body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f8f9fa; /* Light gray background */
-  color: #212529; /* Dark gray text */
+  background-color: var(--bg-color); /* Light gray background */
+  color: var(--text-color); /* Dark gray text */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

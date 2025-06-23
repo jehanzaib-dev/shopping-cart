@@ -5,7 +5,8 @@
   align-items: center;
   height: 100%;
   padding: 1rem;
-  background-color: #fff;
+  background-color:var(--card-bg);
+  color: var(--text-color);
   border-radius: 8px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
@@ -13,7 +14,7 @@
 }
 .product-card:hover {
   transform: translateY(-8px);
-  border: 1px solid #007bff;
+  border: 1px solid var(--btn-bg);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 @keyframes fadeInUp {
@@ -51,8 +52,8 @@
 }
 .view-details-btn {
   margin-top: auto;
-  background-color: #007bff;
-  color: white;
+  background-color:var(--btn-bg);
+  color: var(--btn-text);
   padding: 0.5rem 1rem;
   border-radius: 4px;
   text-decoration: none;
@@ -69,7 +70,7 @@
 }
 .product-link:hover .product-name {
   text-decoration: underline;
-  color: #007bff;
+  color: var(--btn-bg);
 }
 .product-tagline {
   font-size: 0.95rem;
@@ -94,7 +95,7 @@
   margin:0;
   padding: 0;
   height: 50px;
-  color: #333;
+  color: var(--text-color);
   text-decoration: none;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -105,7 +106,7 @@
 }
 
 .product-name:hover {
-  color: #007bff;
+  color: var(--btn-bg);
 }
 
 .product-price {

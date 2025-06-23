@@ -14,7 +14,7 @@
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  background: #fff;
+  background: var(--card-bg);
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
@@ -37,7 +37,7 @@
 .cart-details button {
   margin-top: 0.5rem;
   background: #dc3545;
-  color: white;
+  color: var(--btn-text);
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 4px;
@@ -50,7 +50,7 @@
 
 .cart-summary button {
   background: #6c757d;
-  color: white;
+  color: var(--btn-text);
   border: none;
   padding: 0.6rem 1.2rem;
   border-radius: 4px;
@@ -59,7 +59,7 @@
 .empty-cart {
   text-align: center;
   padding: 3rem 1rem;
-  background: #fff;
+  background: var(--card-bg);
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
@@ -67,8 +67,8 @@
 .back-btn {
   display: inline-block;
   margin-top: 1rem;
-  background: #007bff;
-  color: white;
+  background: var(--btn-bg);
+  color: var(--btn-text);
   padding: 0.6rem 1.2rem;
   border-radius: 4px;
   text-decoration: none;
