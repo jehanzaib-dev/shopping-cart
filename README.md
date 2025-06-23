@@ -78,4 +78,4 @@ Output directory: dist (if using Vite) or build (if using CRA)
 
 👨‍💻 Author
 Made with ❤️ by Jehanzaib
-📫 [Your email or LinkedIn]
+📫 [www.linkedin.com/in/jehanzaib-arshad-a722b6369]
