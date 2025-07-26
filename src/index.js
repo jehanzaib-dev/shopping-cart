@@ -4,18 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
-import {GlobalState} from './context/context.js';
-import { ThemeProvider } from "./context/ThemeContext";
+import {Provider} from 'react-redux';
+import store from './redux/store.js';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<BrowserRouter>
-		<ThemeProvider>
-		<GlobalState>
+		<Provider store={store}>
     	<App />
-    	</GlobalState>
-    </ThemeProvider>
+    	</Provider>
     </BrowserRouter>
 );
 

@@ -14,7 +14,7 @@
 :root {
   --bg-color: #ffffff;
   --text-color: #121212;
-  --card-bg: #fff;
+  --card-bg: #cbcbcb;
   --btn-bg: #007bff;
   --btn-text: #fff;
 }
@@ -22,7 +22,7 @@
 [data-theme="dark"] {
   --bg-color: #121212;
   --text-color: #f0f0f0;
-  --card-bg: #1e1e1e;
+  --card-bg: #444;
   --btn-bg: #17a2b8;
   --btn-text: #fff;
 }
@@ -48,4 +48,17 @@ button,
 .home-btn {
   background-color: var(--btn-bg);
   color: var(--btn-text);
+}
+body,
+.product-card,
+.navbar,
+footer,
+.cart-item,
+.product-details,
+button,
+.view-details-btn,
+.retry-btn,
+.add-btn,
+.home-btn {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }

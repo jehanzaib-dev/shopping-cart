@@ -9,9 +9,16 @@ import './App.css';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NotFound from './pages/NotFound';
+import {useEffect} from 'react';
+import {useSelector} from 'react-redux';
 
 
 const App = () => {
+  const theme=useSelector((state)=>state.theme.theme);
+  useEffect(()=>{
+    document.documentElement.setAttribute("data-theme", theme);
+  },[theme]);
+
   return (
     <>
       <Navbar />
@@ -22,7 +29,7 @@ const App = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer/>
-       <ToastContainer position="top-right" autoClose={3000} />
+       <ToastContainer position="top-right" autoClose={1500} />
     </>
   );
 };

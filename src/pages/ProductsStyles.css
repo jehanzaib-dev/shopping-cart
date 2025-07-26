@@ -18,11 +18,12 @@
   border-radius: 4px;
   min-width: 200px;
 }
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+.product-cntnr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 1.5rem;
-  align-items: stretch;
 }
 .loader {
   text-align: center;
@@ -52,8 +53,9 @@
   background-color: #0056b3;
 }
 
-@media (max-width: 600px) {
-  .product-grid {
-    grid-template-columns: 1fr;
+@media (min-width: 600px) {
+  .product-cntnr {
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 }

@@ -1,46 +1,28 @@
-import React, { useEffect, useState,useCallback, useContext } from "react";
+import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProductById } from "../redux/features/productDetailsSlice";
+import { addToCart } from "../redux/features/cartSlice";
 import Loader from "../components/Loader";
-import { GlobalContext } from "../context/context";
 import "./ProductDetailsStyles.css";
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const { addToCart } = useContext(GlobalContext);
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const dispatch = useDispatch();
 
-  
-  const fetchProduct = useCallback(async () => {
-  try {
-    setLoading(true);
-    setError(null);
-    const res = await fetch(`https://fakestoreapi.com/products/${id}`);
-    if (!res.ok) throw new Error("Failed to fetch product");
-    const data = await res.json();
-    setProduct(data);
-  } catch (err) {
-    setError("Failed to load product.");
-  } finally {
-    setLoading(false);
-  }
-}, [id]);
+  const { product, status, error } = useSelector((state) => state.productDetails);
 
-useEffect(() => {
-  fetchProduct();
-}, [fetchProduct]);
+  useEffect(() => {
+    dispatch(fetchProductById(id));
+  }, [dispatch, id]);
 
-  
-
-  if (loading) return <Loader/>;
-  if (error){ 
-    return ( 
-    <div className="error-message">
-      <p>{error}</p>
-      <button onClick={fetchProduct} className="retry-btn">Retry
-      </button>
-    </div>
+  if (status === "loading") return <Loader />;
+  if (status === "failed") {
+    return (
+      <div className="error-message">
+        <p>{error}</p>
+        <button onClick={() => dispatch(fetchProductById(id))} className="retry-btn">Retry</button>
+      </div>
     );
   }
 
@@ -53,7 +35,7 @@ useEffect(() => {
         <h2>{product.title}</h2>
         <p className="price">${product.price}</p>
         <p className="description">{product.description}</p>
-        <button className="add-btn" onClick={() => addToCart(product)}>
+        <button className="add-btn" onClick={() => dispatch(addToCart(product))}>
           Add to Cart
         </button>
         <Link to="/" className="back-link">← Back to Products</Link>

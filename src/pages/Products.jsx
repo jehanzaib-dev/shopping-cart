@@ -1,40 +1,27 @@
-import React, { useState, useEffect, useContext } from "react";
-import { GlobalContext } from "../context/context";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../redux/features/cartSlice";
+import { fetchProducts, selectAllProducts } from "../redux/features/productsSlice";
 import ProductCard from "../components/ProductCard";
 import Loader from "../components/Loader";
 import "./ProductsStyles.css";
 
 const Products = () => {
-  const { addToCart } = useContext(GlobalContext);
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const dispatch = useDispatch();
 
-  // Search & sort
+  const products = useSelector(selectAllProducts);
+  const status = useSelector((state) => state.products.status);
+  const error = useSelector((state) => state.products.error);
+
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOption, setSortOption] = useState("");
 
-  // Fetch product list
-  const fetchProducts = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const response = await fetch("https://fakestoreapi.com/products");
-      if (!response.ok) throw new Error("Failed to fetch products.");
-      const data = await response.json();
-      setProducts(data);
-    } catch (err) {
-      setError("Unable to load products. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    if (status === "idle") {
+      dispatch(fetchProducts());
+    }
+  }, [status, dispatch]);
 
-  // Filter and sort the product list
   const filteredProducts = products
     .filter((product) =>
       product.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -53,7 +40,6 @@ const Products = () => {
     <div className="container">
       <h2>Products</h2>
 
-      {/* Search + Sort UI */}
       <div className="filter-bar">
         <input
           type="text"
@@ -73,23 +59,20 @@ const Products = () => {
         </select>
       </div>
 
-      {/* Loader, Error, or Product Grid */}
-      {loading ? (
+      {status === "loading" ? (
         <Loader />
-      ) : error ? (
+      ) : status === "failed" ? (
         <div className="error-message">
           <p>{error}</p>
-          <button onClick={fetchProducts} className="retry-btn">
-            Retry
-          </button>
+          <button onClick={() => dispatch(fetchProducts())} className="retry-btn">Retry</button>
         </div>
       ) : (
-        <div className="product-grid">
+        <div className="product-cntnr">
           {filteredProducts.map((product) => (
             <ProductCard
               key={product.id}
               product={product}
-              addToCart={addToCart}
+              addToCart={(item) => dispatch(addToCart(item))}
             />
           ))}
         </div>

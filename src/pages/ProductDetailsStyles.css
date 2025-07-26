@@ -43,7 +43,7 @@
 
 .back-link {
   text-decoration: none;
-  color: #555;
+  color: var(--text-color);
   margin-left: 0.5rem;
 }
 .error-message {
