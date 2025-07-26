@@ -6,7 +6,7 @@ It features dynamic product loading, Redux-based cart and product state, theme t
 ---
 
 ## 🚀 Live Demo  
-👉 [View Live](https://mynovacart.netlify.app/)
+👉 [View Live](https://novacart-snowy.vercel.app/)
 
 ---
 
