@@ -64,7 +64,7 @@ cd shopping-cart
 npm install
 npm start
 🧪 Deployment
-Deployed using Netlify:
+Deployed using **Vercel** with automatic CI/CD from GitHub.
 Just connect your GitHub repo
 
 Build command: npm run build
